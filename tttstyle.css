@@ -1,0 +1,30 @@
+*{
+    text-align: center;
+}
+
+header h1{
+    margin: auto;
+}
+
+.container{
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 25%;
+    height: 324px;
+    border :4px solid rgb(255 155 155 / 93%);
+}
+.btn{
+    height: 108px;
+    border: 5px solid #6b2f53f7;
+    cursor: pointer;
+    font-size: 80px;
+}
+.btn:hover{
+    background-color: chartreuse;
+}
+
+.result{
+    font-size: 38px;
+    font-weight: bolder;
+}
