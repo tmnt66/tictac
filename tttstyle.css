@@ -27,3 +27,14 @@ header h1{
     font-size: 38px;
     font-weight: bolder;
 }
+
+.reset{
+    border: none;
+    background-color: #39ff02;
+    height: 50px;
+    width: 150px;
+    margin: 20px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bolder;
+}

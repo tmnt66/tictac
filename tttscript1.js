@@ -1,13 +1,11 @@
 let buttons = document.querySelectorAll('.btn');
 let record = document.querySelectorAll('.btn');
 let result = document.querySelector(".result")
-let reset = document.querySelector(".reset")
+let reset = document.querySelector(".reset");
 let clic = new Audio('click.mp3');
+let chance = document.querySelector('.turn');
 
-
-
-
-let index = 0;
+let continuePlay = 1;
 let turn = "o";
 let winArr = [
     [0, 1, 2],
@@ -20,7 +18,6 @@ let winArr = [
     [2, 4, 6]
 ]
 
-
 let checkwin = () => {
     let winner = '';
 
@@ -28,7 +25,7 @@ let checkwin = () => {
     [...record].forEach((value) => {
         arr.push(value.innerHTML);
     })
-    // console.log(arr)
+
 
     winArr.forEach((value) => {
 
@@ -48,49 +45,43 @@ let checkwin = () => {
 
 const declareWinner=(winner)=>{
     result.innerHTML = winner +" "+ "wins";
-    console.log(result.innerHTML);
-    index = 1;
-    console.log(winner + "wins")
+    continuePlay = 0;
+
 }
 
 const changeturn = () => {
     if (turn === "x") {
         turn = "o"
+        chance.innerHTML =" X 's turn"
         return "o";
     }
     else {
-        turn = "x"
+        turn = "x";
+        chance.innerHTML = "O 's turn"
         return "x";
     }
 }
 
-
-
-
-
-// let resetGame=()=>{
-//     Array.from(record).forEach((button) => {
-//         button.innerHTML="";
-//     })
-// }
-// reset.addEventListener('click',resetGame())
-
-// let winner = 0;
-
-
 // let btn = Array.from(buttons)
 [...record].forEach((button) => {
     button.addEventListener('click', (e) => {
-        if (e.target.innerHTML == "" && index == 0) {
+        if (e.target.innerHTML == "" && continuePlay == 1) {
             e.target.innerHTML = changeturn();
+         
             clic.play();
             checkwin();
-            // if (win !== 'false') {
-            //     result.innerHTML = win + "winner";
-            //     console.log(result.innerHTML);
-            //     index = 1;
-            // };
-
         }
     })
 })
+
+
+    let resetGame=
+
+    reset.addEventListener('click',()=>{
+        [...buttons].forEach((button) => {
+            button.innerHTML="";
+        })
+
+        continuePlay = 1;
+        result.innerHTML = "Enjoy Your Game"
+    })
