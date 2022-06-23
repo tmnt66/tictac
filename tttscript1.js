@@ -1,9 +1,14 @@
 let buttons = document.querySelectorAll('.btn');
 let record = document.querySelectorAll('.btn');
+let result = document.querySelector(".result")
+let reset = document.querySelector(".reset")
 let clic = new Audio('click.mp3');
+
+
+
+
 let index = 0;
 let turn = "o";
-
 let winArr = [
     [0, 1, 2],
     [3, 4, 5],
@@ -14,22 +19,38 @@ let winArr = [
     [0, 4, 8],
     [2, 4, 6]
 ]
+
+
 let checkwin = () => {
+    let winner = '';
+
     let arr = [];
     [...record].forEach((value) => {
         arr.push(value.innerHTML);
     })
-    console.log(arr)
+    // console.log(arr)
 
     winArr.forEach((value) => {
-        let os = 0;
-        let xs = 0;
-        if (arr[value[0]] == arr[value[1]] && arr[value[1]] == arr[value[2]] && arr[value[0]] !== " " && arr[value[1]] !== " " && arr[value[2]] !== " ") 
-        // if (arr[value[0]] == arr[value[1]] && arr[value[1]] == arr[value[2]] && arr[value[0]] !== " " )
-         {
-            console.log("winner")
+
+        if (arr[value[0]] == arr[value[1]] && arr[value[1]] == arr[value[2]] && arr[value[0]] !== "" && arr[value[1]] !== "" && arr[value[2]] !== "") {
+            if (arr[value[0]] == 'x')
+                winner = "X"
+            else if (arr[value[0]] == 'o')
+                winner = "O"
+            declareWinner(winner);
+      
         }
+
     })
+
+    return winner
+}
+
+const declareWinner=(winner)=>{
+    result.innerHTML = winner +" "+ "wins";
+    console.log(result.innerHTML);
+    index = 1;
+    console.log(winner + "wins")
 }
 
 const changeturn = () => {
@@ -43,19 +64,32 @@ const changeturn = () => {
     }
 }
 
-let winner = 0;
 
-let btn = Array.from(buttons)
-btn.forEach((button) => {
+
+
+
+// let resetGame=()=>{
+//     Array.from(record).forEach((button) => {
+//         button.innerHTML="";
+//     })
+// }
+// reset.addEventListener('click',resetGame())
+
+// let winner = 0;
+
+
+// let btn = Array.from(buttons)
+[...record].forEach((button) => {
     button.addEventListener('click', (e) => {
-        if (e.target.innerHTML == "") {
+        if (e.target.innerHTML == "" && index == 0) {
             e.target.innerHTML = changeturn();
             clic.play();
-            checkWin = checkwin();
-            if(checkWin=="winner"){
-
-                console.log(checkwin() + "winner")
-            };
+            checkwin();
+            // if (win !== 'false') {
+            //     result.innerHTML = win + "winner";
+            //     console.log(result.innerHTML);
+            //     index = 1;
+            // };
 
         }
     })
